@@ -53,7 +53,8 @@ class _DetailPageState extends State<DetailPage> {
                       fontSize: 40,
                       fontWeight: FontWeight.bold
                   ),
-                  textInputAction: TextInputAction.next
+                  autofocus: true,
+                  textInputAction: TextInputAction.next,
                 ),
                 Expanded(
                   child: TextField(

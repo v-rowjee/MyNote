@@ -44,20 +44,23 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
-            : notes.isEmpty
-                ? const Center(child: Text("Nothing here"))
-                : SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(25),
-                          child: Text("MyNote",
-                              style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.bold)),
-                        ),
-                        ListView.builder(
+            : SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(25),
+                      child: Text("MyNote",
+                          style: TextStyle(
+                              fontSize: 40, fontWeight: FontWeight.bold)),
+                    ),
+                    notes.isEmpty
+                        ? const Padding(
+                            padding: EdgeInsets.all(30),
+                            child: Text("Nothing here")
+                          )
+                        : ListView.builder(
                             padding: const EdgeInsets.all(20),
                             physics: const BouncingScrollPhysics(),
                             shrinkWrap: true,
@@ -99,9 +102,9 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               );
                             }),
-                      ],
-                    ),
-                  ),
+                  ],
+                ),
+              ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           backgroundColor: Theme.of(context).primaryColor,
