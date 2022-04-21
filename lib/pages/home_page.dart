@@ -105,7 +105,14 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           backgroundColor: Theme.of(context).primaryColor,
-          onPressed: () => createNote(),
+          onPressed: () async {
+            final newNote = await createNote();
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailPage(note: newNote)))
+                .then((value) => refreshNotes());
+          },
         ),
       ),
     );
@@ -124,9 +131,8 @@ class _HomePageState extends State<HomePage> {
     refreshNotes();
   }
 
-  Future createNote() async {
+  Future<Note> createNote() async {
     final note = Note(title: "", desc: "", createdTime: DateTime.now());
-    await NoteDatabase.instance.create(note);
-    refreshNotes();
+    return await NoteDatabase.instance.create(note);
   }
 }
