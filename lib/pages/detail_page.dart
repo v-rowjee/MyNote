@@ -3,7 +3,7 @@ import 'package:mynote/database/notes_database.dart';
 import 'package:mynote/model/note.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage({Key? key, required this.note}) : super(key: key);
+  const DetailPage({Key? key, required this.note}) : super(key: key);
   final Note note;
 
   @override
